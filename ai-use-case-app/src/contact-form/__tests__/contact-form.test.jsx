@@ -19,7 +19,7 @@ describe("<ContactForm />", () => {
   });
 
   it("should validate the form with incorrect data", () => {
-    const { getByValue } = render(
+    render(
       <Provider store={store}>
         <ContactForm />
       </Provider>
