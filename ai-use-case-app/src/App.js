@@ -1,11 +1,12 @@
 import "./App.css";
 import { Provider } from "react-redux";
 import store from "./utils/store";
+import ContactForm from "./contact-form/contact-form";
 
 function App() {
   return (
     <Provider store={store}>
-      <div>Test</div>
+      <ContactForm />
     </Provider>
   );
 }
