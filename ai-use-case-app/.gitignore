@@ -5,6 +5,11 @@
 /.pnp
 .pnp.js
 
+# tests
+/coverage/lcov-report
+/clover.xml
+/coverage-final.json
+
 # production
 /build
 

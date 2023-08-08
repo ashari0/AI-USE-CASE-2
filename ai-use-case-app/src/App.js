@@ -14,12 +14,12 @@ function App() {
       <div>
         {showForm ? (
           <>
-            <ContactForm />
+            <ContactForm data-testid="contact-form" />
             <button onClick={() => setShowForm(false)}>Show User List</button>
           </>
         ) : (
           <>
-            <UserList />
+            <UserList data-testid="user-list" />
             <button onClick={() => setShowForm(true)}>Back to Form</button>
           </>
         )}
