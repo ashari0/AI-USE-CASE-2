@@ -6,14 +6,13 @@ const initialState = {
 };
 
 const userReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "SET_USER_INFO":
-      return {
-        ...state,
-        ...action.payload,
-      };
-    default:
-      return state;
+  if (action.type === "SET_USER_INFO") {
+    return {
+      ...state,
+      ...action.payload,
+    };
+  } else {
+    return state;
   }
 };
 
