@@ -1,15 +1,12 @@
 const initialState = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  message: "",
+  users: [],
 };
 
 const userReducer = (state = initialState, action) => {
   if (action.type === "SET_USER_INFO") {
     return {
       ...state,
-      ...action.payload,
+      users: [...state.users, action.payload],
     };
   } else {
     return state;

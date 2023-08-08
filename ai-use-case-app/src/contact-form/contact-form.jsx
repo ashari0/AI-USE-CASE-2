@@ -30,11 +30,17 @@ function ContactForm() {
     if (!formState.lastName) formErrors.lastName = "Last name is required";
     if (!validator.isEmail(formState.email))
       formErrors.email = "Email is not valid";
+    if (formState.message.length < 10)
+      formErrors.message = "Message must be at least 10 characters long";
     if (!formState.message) formErrors.message = "Message is required";
 
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
       return;
+    }
+
+    if (Object.keys(formErrors).length === 0) {
+      alert("Record submitted successfully!");
     }
 
     dispatch(setUserInfo(formState));
