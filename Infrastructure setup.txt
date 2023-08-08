@@ -1,5 +1,6 @@
 User
 How to bind SonarCloud.io to created repository
+
 ChatGPT
 SonarCloud is a cloud-based service that provides continuous inspection of code quality. Integrating SonarCloud with your repository will help you detect bugs and vulnerabilities in your code. Here's a step-by-step guide to bind SonarCloud to a repository:
 
@@ -103,3 +104,97 @@ javascript
 Copy code
 import { createStore } from 'redux';
 import validator from 'validator';
+
+
+
+User
+I got this error for sonarCloud action
+
+Run SonarSource/sonarcloud-github-action@master
+/usr/bin/docker run --name bedb44623e6699439468c8d3fb508959e44bf_0c5e54 --label 5bedb4 --workdir /github/workspace --rm -e "GITHUB_TOKEN" -e "SONAR_TOKEN" -e "INPUT_ARGS" -e "INPUT_PROJECTBASEDIR" -e "HOME" -e "GITHUB_JOB" -e "GITHUB_REF" -e "GITHUB_SHA" -e "GITHUB_REPOSITORY" -e "GITHUB_REPOSITORY_OWNER" -e "GITHUB_REPOSITORY_OWNER_ID" -e "GITHUB_RUN_ID" -e "GITHUB_RUN_NUMBER" -e "GITHUB_RETENTION_DAYS" -e "GITHUB_RUN_ATTEMPT" -e "GITHUB_REPOSITORY_ID" -e "GITHUB_ACTOR_ID" -e "GITHUB_ACTOR" -e "GITHUB_TRIGGERING_ACTOR" -e "GITHUB_WORKFLOW" -e "GITHUB_HEAD_REF" -e "GITHUB_BASE_REF" -e "GITHUB_EVENT_NAME" -e "GITHUB_SERVER_URL" -e "GITHUB_API_URL" -e "GITHUB_GRAPHQL_URL" -e "GITHUB_REF_NAME" -e "GITHUB_REF_PROTECTED" -e "GITHUB_REF_TYPE" -e "GITHUB_WORKFLOW_REF" -e "GITHUB_WORKFLOW_SHA" -e "GITHUB_WORKSPACE" -e "GITHUB_ACTION" -e "GITHUB_EVENT_PATH" -e "GITHUB_ACTION_REPOSITORY" -e "GITHUB_ACTION_REF" -e "GITHUB_PATH" -e "GITHUB_ENV" -e "GITHUB_STEP_SUMMARY" -e "GITHUB_STATE" -e "GITHUB_OUTPUT" -e "RUNNER_OS" -e "RUNNER_ARCH" -e "RUNNER_NAME" -e "RUNNER_ENVIRONMENT" -e "RUNNER_TOOL_CACHE" -e "RUNNER_TEMP" -e "RUNNER_WORKSPACE" -e "ACTIONS_RUNTIME_URL" -e "ACTIONS_RUNTIME_TOKEN" -e "ACTIONS_CACHE_URL" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" -v "/home/runner/work/_temp/_runner_file_commands":"/github/file_commands" -v "/home/runner/work/AI-USE-CASE-2/AI-USE-CASE-2":"/github/workspace" 5bedb4:4623e6699439468c8d3fb508959e44bf
+INFO: Scanner configuration file: /opt/sonar-scanner/conf/sonar-scanner.properties
+INFO: Project root configuration file: /github/workspace/sonar-project.properties
+INFO: SonarScanner 5.0.1.3006
+INFO: Java 17.0.7 Alpine (64-bit)
+INFO: Linux 5.15.0-1042-azure amd64
+INFO: User cache: /opt/sonar-scanner/.sonar/cache
+INFO: Analyzing on SonarCloud
+INFO: Default locale: "en_US", source code encoding: "UTF-8"
+INFO: Load global settings
+INFO: Load global settings (done) | time=527ms
+INFO: Server id: 1BD809FA-AWHW8ct9-T_TB3XqouNu
+INFO: User cache: /opt/sonar-scanner/.sonar/cache
+INFO: Load/download plugins
+INFO: Load plugins index
+INFO: Load plugins index (done) | time=511ms
+INFO: Load/download plugins (done) | time=4076ms
+INFO: Loaded core extensions: developer-scanner
+INFO: Found an active CI vendor: 'Github Actions'
+INFO: Load project settings for component key: 'ashari0_AI-USE-CASE-2'
+INFO: Load project settings for component key: 'ashari0_AI-USE-CASE-2' (done) | time=472ms
+INFO: Process project properties
+ERROR: Invalid value of sonar.sources for ashari0_AI-USE-CASE-2
+INFO: ------------------------------------------------------------------------
+INFO: EXECUTION FAILURE
+INFO: ------------------------------------------------------------------------
+INFO: Total time: 11.193s
+ERROR: Error during SonarScanner execution
+INFO: Final Memory: 8M/34M
+ERROR: The folder ''../../ai-use-case-app'' does not exist for 'ashari0_AI-USE-CASE-2' (base directory = /github/workspace)
+INFO: ------------------------------------------------------------------------
+ERROR: 
+ERROR: Re-run SonarScanner using the -X switch to enable full debug logging.
+
+My sonar config file
+
+sonar.projectKey=ashari0_AI-USE-CASE-2
+sonar.organization=ashari0
+sonar.projectVersion=1.0
+sonar.sourceEncoding=UTF-8
+# sonar.language=js
+sonar.eslint.eslintconfigpath=app/eslintrc.json
+
+# path to srouce directories
+sonar.sources='../../ai-use-case-app'
+# sonar.tests=app/test/integration/api/
+
+# excludes
+sonar.exclusions=ai-use-case-app
+
+# coverage reporting
+sonar.javascript.lcov.reportPaths=ai-use-case-app/coverage/lcov.info
+# sonar.surefire.reportPaths=app/coverage/lcov-report
+ChatGPT
+The error you're encountering is related to the sonar.sources path you've specified in your sonar-project.properties file. It appears that the path ../../ai-use-case-app doesn't exist relative to the base directory /github/workspace.
+
+Here's how you can fix the issue:
+
+Check the Path: Make sure that the path ../../ai-use-case-app is correct and that it exists in your file system. Verify the location of your source code relative to the base directory, and correct the path if necessary.
+
+Update sonar-project.properties: Modify the sonar.sources property in the sonar-project.properties file to point to the correct directory. Here's an updated version:
+
+properties
+Copy code
+sonar.projectKey=ashari0_AI-USE-CASE-2
+sonar.organization=ashari0
+sonar.projectVersion=1.0
+sonar.sourceEncoding=UTF-8
+# sonar.language=js
+sonar.eslint.eslintconfigpath=app/eslintrc.json
+
+# path to source directories (adjust this to the correct path)
+sonar.sources=your_correct_path_here
+
+# sonar.tests=app/test/integration/api/
+
+# excludes
+sonar.exclusions=ai-use-case-app
+
+# coverage reporting
+sonar.javascript.lcov.reportPaths=ai-use-case-app/coverage/lcov.info
+# sonar.surefire.reportPaths=app/coverage/lcov-report
+Replace your_correct_path_here with the correct path to your source directories.
+
+Run SonarScanner Again: After making the necessary adjustments, re-run the SonarScanner command, and it should proceed without errors.
+
+Remember that the path must be relative to the directory where the sonar-project.properties file is located or the base directory used by the SonarScanner. If you're uncertain about the path, you may want to explore your file system to find the exact location of your source code.
