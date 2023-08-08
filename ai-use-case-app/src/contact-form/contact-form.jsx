@@ -11,7 +11,6 @@ function ContactForm() {
     firstName: "",
     lastName: "",
     email: "",
-    website: "",
     message: "",
   });
 
@@ -53,6 +52,7 @@ function ContactForm() {
         <div className="form-row">
           <div className="input-data">
             <input
+              id="firstName"
               type="text"
               name="firstName"
               value={formState.firstName}
@@ -60,13 +60,14 @@ function ContactForm() {
               required
             />
             <div className="underline"></div>
-            <label>First Name</label>
+            <label htmlFor="firstName">First Name</label>
             {errors.firstName && (
               <span style={{ color: "red" }}>{errors.firstName}</span>
             )}
           </div>
           <div className="input-data">
             <input
+              id="lastName"
               type="text"
               name="lastName"
               value={formState.lastName}
@@ -74,7 +75,7 @@ function ContactForm() {
               required
             />
             <div className="underline"></div>
-            <label>Last Name</label>
+            <label htmlFor="lastName">Last Name</label>
             {errors.lastName && (
               <span style={{ color: "red" }}>{errors.lastName}</span>
             )}
@@ -83,6 +84,7 @@ function ContactForm() {
         <div className="form-row">
           <div className="input-data">
             <input
+              id="email"
               type="text"
               name="email"
               value={formState.email}
@@ -90,26 +92,16 @@ function ContactForm() {
               required
             />
             <div className="underline"></div>
-            <label>Email Address</label>
+            <label htmlFor="email">Email Address</label>
             {errors.email && (
               <span style={{ color: "red" }}>{errors.email}</span>
             )}
-          </div>
-          <div className="input-data">
-            <input
-              type="text"
-              name="website"
-              value={formState.website}
-              onChange={handleChange}
-              required
-            />
-            <div className="underline"></div>
-            <label>Website Name</label>
           </div>
         </div>
         <div className="form-row">
           <div className="input-data textarea">
             <textarea
+              id="message"
               rows="8"
               cols="80"
               name="message"
@@ -119,7 +111,7 @@ function ContactForm() {
             ></textarea>
             <br />
             <div className="underline"></div>
-            <label>Write your message</label>
+            <label htmlFor="message">Write your message</label>
             {errors.message && (
               <span style={{ color: "red" }}>{errors.message}</span>
             )}

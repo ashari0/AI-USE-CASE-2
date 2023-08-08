@@ -14,17 +14,15 @@ function UserList() {
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
-            <th>Website</th>
             <th>Message</th>
           </tr>
         </thead>
         <tbody>
-          {users.map((user, index) => (
+          {users.map((user) => (
             <tr key={user.firstName}>
               <td>{user.firstName}</td>
               <td>{user.lastName}</td>
               <td>{user.email}</td>
-              <td>{user.website}</td>
               <td>{user.message}</td>
             </tr>
           ))}
