@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 import { Provider } from "react-redux";
@@ -14,12 +14,12 @@ function App() {
       <div>
         {showForm ? (
           <>
-            <ContactForm data-testid="contact-form" />
+            <ContactForm />
             <button onClick={() => setShowForm(false)}>Show User List</button>
           </>
         ) : (
           <>
-            <UserList data-testid="user-list" />
+            <UserList />
             <button onClick={() => setShowForm(true)}>Back to Form</button>
           </>
         )}

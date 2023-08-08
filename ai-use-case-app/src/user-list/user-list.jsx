@@ -6,7 +6,7 @@ function UserList() {
   const users = useSelector((state) => state.user.users);
 
   return (
-    <div className="user-list">
+    <div className="user-list" data-testid="user-list">
       <h2>User Information</h2>
       <table>
         <thead>

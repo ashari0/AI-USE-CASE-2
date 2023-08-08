@@ -46,7 +46,7 @@ function ContactForm() {
   };
 
   return (
-    <div className="container">
+    <div className="container" data-testid="contact-form">
       <div className="text">Contact us Form</div>
       <form onSubmit={handleSubmit}>
         <div className="form-row">
