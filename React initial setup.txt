@@ -1,0 +1,89 @@
+User
+Як мені це зробити?
+
+Configure Store: Create a store for the application to store first name, last name, email and message.
+ChatGPT
+Ви хочете створити магазин для зберігання інформації (first name, last name, email, message) в додатку. Це можна зробити за допомогою різних інструментів і технологій, але я наведу приклад використання Redux в React-додатку. Якщо ви працюєте з іншими технологіями, дайте мені знати, і я можу надати конкретний приклад для вашого випадку.
+
+Встановлення Redux:
+Якщо ви ще не встановили Redux, ви можете зробити це за допомогою npm або yarn:
+
+bash
+Copy code
+npm install redux react-redux
+або
+
+bash
+Copy code
+yarn add redux react-redux
+Створення Дій:
+Спершу визначимо дії, які нам потрібні для зберігання даних.
+
+javascript
+Copy code
+// actions.js
+export const setUserInfo = (userInfo) => ({
+  type: 'SET_USER_INFO',
+  payload: userInfo
+});
+Створення Ред'юсера:
+Тепер вам потрібно створити ред'юсер для обробки дій.
+
+javascript
+Copy code
+// reducer.js
+const initialState = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  message: ''
+};
+
+const userReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'SET_USER_INFO':
+      return {
+        ...state,
+        ...action.payload
+      };
+    default:
+      return state;
+  }
+};
+
+export default userReducer;
+Налаштування Store:
+Ви можете об'єднати ред'юсери у головний ред'юсер і створити магазин.
+
+javascript
+Copy code
+// store.js
+import { createStore } from 'redux';
+import userReducer from './reducer';
+
+const rootReducer = combineReducers({
+  user: userReducer
+});
+
+const store = createStore(rootReducer);
+
+export default store;
+Підключення до React-додатку:
+Ви можете огорнути ваш додаток у Provider та передати магазин.
+
+javascript
+Copy code
+// App.js
+import { Provider } from 'react-redux';
+import store from './store';
+
+function App() {
+  return (
+    <Provider store={store}>
+      {/* ваш додаток тут */}
+    </Provider>
+  );
+}
+
+export default App;
+Зараз у вашому додатку є магазин, який можна використовувати для зберігання інформації користувача. Ви можете використовувати useDispatch і useSelector для взаємодії з цим магазином в реактових компонентах.
