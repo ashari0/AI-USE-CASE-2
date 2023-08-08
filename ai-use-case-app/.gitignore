@@ -7,8 +7,8 @@
 
 # tests
 /coverage/lcov-report
-/clover.xml
-/coverage-final.json
+/coverage/clover.xml
+/coverage/coverage-final.json
 
 # production
 /build
